@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","mappings":";;;;;AAAA;AACA;AACA;AACA,CAAC,C","sources":["webpack://gulpstart/./app/js/main.js"],"sourcesContent":["\r\nwindow.addEventListener('DOMContentLoaded', () => {\r\n    // alert()\r\n})"],"names":[],"sourceRoot":""}
