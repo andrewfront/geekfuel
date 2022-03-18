@@ -11,8 +11,14 @@
 __webpack_require__.r(__webpack_exports__);
 const burger = () => {
     const burgerBtn = document.querySelector('.burger')
+    const navMenu = document.querySelector('.nav')
     burgerBtn.addEventListener('click', () => {
         burgerBtn.classList.toggle('burger__active')
+        if (burgerBtn.classList.contains('burger__active')) {
+            navMenu.classList.add('activenav')
+        } else {
+            navMenu.classList.remove('activenav')
+        }
     })
 }
 /* harmony default export */ __webpack_exports__["default"] = (burger);
@@ -195,8 +201,11 @@ __webpack_require__.r(__webpack_exports__);
 const search = () => {
 const findBtn = document.querySelector('.header__search')
 const findInput = document.querySelector('.header__find-input')
+const cartBtn = document.querySelector('.header__cart')
+const cartOverlay = document.querySelector('.header__cart-overlay')
+const cartClose = document.querySelector('.header__cart-close')
 let findActive = false
-findBtn.addEventListener('click', () => {
+findBtn.addEventListener('click', (e) => {
     if (!findActive) {
         findInput.classList.add('findActiveBtn')
         findActive = true
@@ -204,6 +213,12 @@ findBtn.addEventListener('click', () => {
         findInput.classList.remove('findActiveBtn')
         findActive = false
     }
+})
+cartBtn.addEventListener('click', (e) => {
+    cartOverlay.classList.toggle('showcart')
+})
+cartClose.addEventListener('click', (e) => {
+    cartOverlay.classList.remove('showcart')
 })
 }
 /* harmony default export */ __webpack_exports__["default"] = (search);
