@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="css/main.min.css">
     <title>GEEKFUEL</title>
 </head>
@@ -21,17 +22,17 @@
                 </div>
                 <nav class="nav" id="nav">
                     <ul class="header__nav-list">
-                        <li class="header__nav-item"><a data-scroll="#home" href="#" class="header__nav-link">TEE
+                        <li class="header__nav-item"><a data-scroll="#club" href="#" class="header__nav-link">TEE
                                 CLUB</a></li>
                         <li class="header__nav-item"><a data-scroll="#shop" href="#" class="header__nav-link">SHOP</a>
                         </li>
-                        <li class="header__nav-item"><a data-scroll="#pages" href="#"
+                        <li class="header__nav-item"><a data-scroll="#ghostbusters" href="#"
                                 class="header__nav-link">GHOSTBUSTERS</a></li>
-                        <li class="header__nav-item"><a data-scroll="#blog" href="#" class="header__nav-link">GIFT</a>
+                        <li class="header__nav-item"><a data-scroll="#gift" href="#" class="header__nav-link">GIFT</a>
                         </li>
                     </ul>
                 </nav>
-                <a href="#" class="header__logo"><picture><source srcset="images/header/logo.webp" type="image/webp"><img src="images/header/logo.png" alt="logo"></picture></a>
+                <a href="#" class="header__logo logo"><picture><source srcset="images/header/logo.webp" type="image/webp"><img src="images/header/logo.png" alt="logo"></picture></a>
                 <div class="header__cart-center">
                     <div data-da=".header__content,1036,1" class="header__search-center">
                     <svg class="header__search">
@@ -119,7 +120,7 @@
             <div class="offer">
     <div class="container">
 <div class="offer__inner">
-    <h3 class="offer__title">HERE’S WHAT YOU’LL GET IN OUR <span>LIMITED TIME OFFER</span></h3>
+    <h3 data-aos="fade-right" data-aos-duration="1000" class="offer__title">HERE’S WHAT YOU’LL GET IN OUR <span>LIMITED TIME OFFER</span></h3>
     <div class="offer__content">
         <ul class="offer__list">
             <li class="offer__item">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </li>
@@ -158,21 +159,21 @@
     <div class="container">
         <h4 class="geek__title">GET YOUR GEEK ON!</h4>
         <div class="geek__inner">
-            <div class="geek__item">
+            <div data-aos="fade-up" data-aos-duration="1000" class="geek__item">
                 <div class="geek__content">
                     <picture><source srcset="images/geek/img1.webp" type="image/webp"><img src="images/geek/img1.jpg" alt="geek" class="geek__img"></picture>
                     <div class="geek__name">Sed vel leo sed turpis</div>
                 </div>
                 <p class="geek__text">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </p>
             </div>
-            <div class="geek__item">
+            <div data-aos="fade-up" data-aos-duration="1000" class="geek__item">
                 <div class="geek__content">
                     <picture><source srcset="images/geek/img2.webp" type="image/webp"><img src="images/geek/img2.jpg" alt="geek" class="geek__img"></picture>
                     <div class="geek__name">Sed vel leo sed turpis</div>
                 </div>
                 <p class="geek__text">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </p>
             </div>
-            <div class="geek__item">
+            <div data-aos="fade-up" data-aos-duration="1000" class="geek__item">
                 <div class="geek__content">
                     <picture><source srcset="images/geek/img3.webp" type="image/webp"><img src="images/geek/img3.jpg" alt="geek" class="geek__img"></picture>
                     <div class="geek__name">Sed vel leo sed turpis</div>
@@ -182,10 +183,10 @@
         </div>
     </div>
 </div>
-            <div class="goods">
+            <div class="goods" id="club">
     <div class="container">
         <div class="goods__inner">
-            <div class="goods__info">
+            <div data-aos="fade-right" data-aos-duration="1000" class="goods__info">
                 <h6 class="goods__title">good for</h6>
                 <div class="goods__subtitle">every day</div>
                 <p class="goods__text">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </p>
@@ -239,8 +240,186 @@
         </div>
     </div>
 </div>
-
+            <div class="plan" id="ghostbusters">
+    <div class="container">
+        <h6 class="plan__title">Select a plan</h6>
+        <p class="plan__text">New subscribers receive our <span>GEEK FUEL BOX</span> ($122 + value) as their first box!</p>
+        <div class="plan__inner">
+            <div data-aos="fade-up" data-aos-duration="1000" class="plan__item">
+                <div class="plan__name">Month-to-Month</div>
+                <div class="plan__price">$26 <span>/ month</span></div>
+                <picture><source srcset="images/plan/img1.webp" type="image/webp"><img src="images/plan/img1.png" alt="plan" class="plan__img"></picture>
+                <div class="plan__pay">Billed monthly</div>
+                <div class="plan__delivery">Delivered monthly</div>
+                <div class="plan__discount">Save $18 compared to monthly</div>
+                <div class="plan__bonus">Free bonus box ($125 value)</div>
+                <a href="#" class="plan__btn">select a plan</a>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="plan__item">
+                <div class="plan__name">Month-to-Month</div>
+                <div class="plan__price">$26 <span>/ month</span></div>
+                <picture><source srcset="images/plan/img2.webp" type="image/webp"><img src="images/plan/img2.png" alt="plan" class="plan__img"></picture>
+                <div class="plan__pay">Billed monthly</div>
+                <div class="plan__delivery">Delivered monthly</div>
+                <div class="plan__discount">Save $18 compared to monthly</div>
+                <div class="plan__bonus">Free bonus box ($125 value)</div>
+                <a href="#" class="plan__btn">select a plan</a>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="plan__item">
+                <div class="plan__name">Month-to-Month</div>
+                <div class="plan__price">$26 <span>/ month</span></div>
+                <picture><source srcset="images/plan/img3.webp" type="image/webp"><img src="images/plan/img3.png" alt="plan" class="plan__img"></picture>
+                <div class="plan__pay">Billed monthly</div>
+                <div class="plan__delivery">Delivered monthly</div>
+                <div class="plan__discount">Save $18 compared to monthly</div>
+                <div class="plan__bonus">Free bonus box ($125 value)</div>
+                <a href="#" class="plan__btn">select a plan</a>
+            </div>
+        </div>
+        <p class="plan__descr">Your plan automatically renews.</p>
+        <p class="plan__descr-full">You can easily skip, pause, or cancel your subscription at any time.</p>
+    </div>
+</div>
+            <div class="discount">
+    <div class="container">
+        <div class="discount__inner">
+            <div class="discount__content">
+                <h6 data-aos="fade-right" data-aos-duration="1000" class="discount__title">FIRST MONTH REVEAL</h6>
+                <p class="discount__text discount__text--first">Cras eu dapibus libero. Duis semper luctus pellentesque. Curabitur scelerisque, quam vel vestibulum rhoncus, nisl ligula tincidunt neque, sit amet rhoncus lectus nunc ut urna. Fusce nulla dolor, volutpat eget ultrices a, semper vitae felis.</p>
+                <p class="discount__text discount__text--second">Cras non sapien justo. Praesent blandit dignissim lacus, sit amet pulvinar enim vestibulum non. Nunc non odio sit amet ipsum sodales porta. Nam tempus nec ex a placerat. Vivamus tincidunt dolor et nisi euismod ullamcorper. Ut mattis volutpat justo convallis aliquet.</p>
+                <a href="#" class="discount__btn">learn more</a>
+            </div>
+            <div class="discount__img"><picture><source srcset="images/discount/img1.webp" type="image/webp"><img src="images/discount/img1.jpg" alt="discount"></picture></div>
+        </div>
+    </div>
+</div>
+            <div class="shop" id="gift">
+<div class="shop__swiper swiper">
+    <div class="shop__wrapper swiper-wrapper">
+      <div class="shop__slide swiper-slide">
+            <div data-aos="fade-up" data-aos-duration="1000" class="shop__content">
+                <div class="shop__title">good for</div>
+                <div class="shop__subtitle">every day</div>
+                <p class="shop__text">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </p>
+                <a href="#" class="shop__btn">shop all</a>
+            </div>
+      </div>
+      <div class="shop__slide swiper-slide">
+        <div class="shop__content">
+            <div class="shop__title">good for</div>
+            <div class="shop__subtitle">every day</div>
+            <p class="shop__text">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </p>
+            <a href="#" class="shop__btn">shop all</a>
+        </div>
+  </div>
+  <div class="shop__slide swiper-slide">
+    <div class="shop__content">
+        <div class="shop__title">good for</div>
+        <div class="shop__subtitle">every day</div>
+        <p class="shop__text">Mauris vestibulum nulla vitae massa lacinia pretium. Aliquam sodales venenatis nunc, et lacinia nunc. </p>
+        <a href="#" class="shop__btn">shop all</a>
+    </div>
+</div>
+    </div>
+    <div class="shop__pagination-container">
+    <div class="shop__pagination swiper-pagination"></div>
+</div>
+  </div>
+</div>
+            <div class="reviews">
+    <h6 class="reviews__title">WE LOVE A GOOD COMPLIMENT</h6>
+    <div class="reviews__swiper swiper">
+        <div class="reviews__wrapper swiper-wrapper">
+          <div class="reviews__slide swiper-slide">
+              <p class="reviews__text">«Nam accumsan est vel neque varius, a gravida diam dignissim. Maecenas eu dui porta, pellentesque nisi id, bibendum erat. Proin condimentum lacinia tellus.»</p>
+              <div class="reviews__name">olivia j</div>
+          </div>
+          <div class="reviews__slide swiper-slide">
+            <p class="reviews__text">«Nam accumsan est vel neque varius, a gravida diam dignissim. Maecenas eu dui porta, pellentesque nisi id, bibendum erat. Proin condimentum lacinia tellus.»</p>
+            <div class="reviews__name">olivia j</div>
+        </div>
+        <div class="reviews__slide swiper-slide">
+            <p class="reviews__text">«Nam accumsan est vel neque varius, a gravida diam dignissim. Maecenas eu dui porta, pellentesque nisi id, bibendum erat. Proin condimentum lacinia tellus.»</p>
+            <div class="reviews__name">olivia j</div>
+        </div>
+        </div>
+      </div>
+      <div class="reviews__pagination-container">
+        <div class="reviews__pagination swiper-pagination"></div>
+    </div>
+</div>
+            <div class="brands">
+    <div class="container">
+        <h6 class="brands__title">featured fandoms</h6>
+        <div class="brands__inner">
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img1.webp" type="image/webp"><img src="images/brands/img1.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img2.webp" type="image/webp"><img src="images/brands/img2.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img3.webp" type="image/webp"><img src="images/brands/img3.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img4.webp" type="image/webp"><img src="images/brands/img4.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img5.webp" type="image/webp"><img src="images/brands/img5.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img6.webp" type="image/webp"><img src="images/brands/img6.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img7.webp" type="image/webp"><img src="images/brands/img7.png" alt="brands" class="brands__img"></picture></a>
+            <a href="#" class="brands__link"><picture><source srcset="images/brands/img8.webp" type="image/webp"><img src="images/brands/img8.png" alt="brands" class="brands__img"></picture></a>
+        </div>
+    </div>
+</div>
         </main>
+        <div class="footer">
+    <div class="container">
+        <div data-aos="fade-up" data-aos-duration="1000" class="footer__inner">
+            <picture><source srcset="images/footer/logo.webp" type="image/webp"><img src="images/footer/logo.png" alt="footer" class="footer__logo logo"></picture>
+            <ul class="footer__list">
+                <li class="link"><a href="#"></a>bundles</li>
+                <li class="link"><a href="#"></a>exclusive tees</li>
+                <li class="link"><a href="#"></a>mondo</li>
+                <li class="link"><a href="#"></a>collectibles</li>
+            </ul>
+            <ul class="footer__list">
+                <li class="link"><a href="#"></a>collectibles</li>
+                <li class="link"><a href="#"></a>GHOSTBUSTERS</li>
+                <li class="link"><a href="#"></a>GIFT</li>
+                <li class="link"><a href="#"></a>login</li>
+            </ul>
+            <form class="footer__form">
+                <div class="footer__sign">Sign up for our news & updates</div>
+                <label class="footer__mail">
+                    <input class="footer__email" type="email" placeholder="Enter your email to subscribe">
+                    <button class="footer__submit"><picture><source srcset="images/footer/submit.svg" type="image/webp"><img src="images/footer/submit.svg" alt=""></picture></button>
+                </label>
+                <div class="footer__social">
+                    <a class="footer__social-link" href="#">
+                        <svg class="footer__facebook">
+                            <use xlink:href="images/svg/sprite.svg#facebook"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-link" href="#">
+                        <svg class="footer__instagram">
+                            <use xlink:href="images/svg/sprite.svg#instagram"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-link" href="#">
+                        <svg class="footer__linkedin">
+                            <use xlink:href="images/svg/sprite.svg#linkedin"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-link" href="#">
+                        <svg class="footer__twitter">
+                            <use xlink:href="images/svg/sprite.svg#twitter"></use>
+                        </svg>
+                    </a>
+                    <a class="footer__social-link" href="#">
+                        <svg class="footer__youtube">
+                            <use xlink:href="images/svg/sprite.svg#youtube"></use>
+                        </svg>
+                    </a>
+                </div>
+            </form>
+        </div>
+        <div class="footer__copyright">
+            <p class="footer__copyright-text">made by | Andrew <span>❤</span></p>
+        </div>
+    </div>
+</div>
     </div>
     <script src="js/main.js"></script>
 </body>
