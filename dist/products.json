@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "sys": { "id": "1"},
+      "fields": {
+        "title": "T-Shirt 'Grey'",
+        "price": 10.99,
+        "image": { "fields": { "file": { "url": "./images/products/img1.png" } } }
+      }
+    },
+    {
+      "sys": { "id": "2"},
+      "fields": {
+        "title": "T-Shirt 'Yellow'",
+        "price": 12.99,
+        "image": { "fields": { "file": { "url": "images/products/img2.png" } } }
+      }
+    },
+    {
+      "sys": { "id": "3"},
+      "fields": {
+        "title": "T-Shirt 'Red'",
+        "price": 12.99,
+        "image": { "fields": { "file": { "url": "images/products/img3.png" } } }
+      }
+    }
+  ]
+}

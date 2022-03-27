@@ -25,6 +25,130 @@ const burger = () => {
 
 /***/ }),
 
+/***/ "./app/js/modules/cartSettings.js":
+/*!****************************************!*\
+  !*** ./app/js/modules/cartSettings.js ***!
+  \****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const cartSettings = () => {
+const cartItself = document.querySelector('.header__cart-overlay')
+const cartBtn = document.querySelector('.header__cart-content')
+const cartCloseBtn = document.querySelector('.header__cart-close')
+let cartCount = document.querySelector('.header__cart-count')
+const cartWrapper = document.querySelector('.header__cart-wrapper')
+const cartPrice = document.querySelector('.price')
+let cartNumber = document.querySelector('.header__cart-number')
+const decreaseBtn = document.querySelector('.header__cart-decrease')
+const increaseBtn = document.querySelector('.header__cart-increase')
+let cartAmount = document.querySelector('.cart__amount')
+let cartTotal = document.querySelector('.cart__total')
+const resetCart = document.querySelector('.header__cart-footer__reset')
+const pdoductsContent = document.querySelector('.products__inner')
+const productsImg = document.querySelector('.products__img')
+const productsName = document.querySelector('.products__name')
+const productsPrice = document.querySelector('.product__price')
+let cart = []
+let buttonsDOM = []
+class Products {
+async getProducts() {
+    try {
+        let result = await fetch('products.json')
+        let data = await result.json()
+        let products = data.items
+        products = products.map(item => {
+            const {title, price} = item.fields
+            const {id} = item.sys
+            const image = item.fields.image.fields.file.url
+            return {title, price, id, image}
+        })
+        return products
+    } catch (error) {
+        console.log(error)
+    }
+}
+}
+class UI {
+    displayProducts(products) {
+        let result = ''
+        products.forEach(product => {
+            result += `
+            <div class="products__item">
+            <img class="products__img" src=${product.image} alt=${product.title}>
+            <div class="products__name">${product.title}</div>
+            <div class="products__price">$ <span class="product__price">${product.price}</span> USD</div>
+            <button data-id=${product.id} class="products__btn">Add To Cart</button>
+        </div>
+            `
+        })
+        pdoductsContent.innerHTML = result
+    }
+    getAddButtons() {
+        const addTocartBtns = [...document.querySelectorAll('.products__btn')]
+        buttonsDOM = addTocartBtns
+        addTocartBtns.forEach(button => {
+            let id = button.dataset.id
+            let inCart = cart.find(item => item.id === id)
+            if (inCart) {
+                button.innerText = 'In Cart'
+                button.disabled = true
+            }
+                button.addEventListener('click', (e) => {
+                    e.target.innerText = 'In Cart'
+                    e.target.disabled = true
+                    // get product from products
+                    let cartItem = {...Storage.getProduct(id), amount: 1}
+                    // add product to the cart
+                    cart = [...cart, cartItem]
+                    // save cart in local storage
+                    Storage.saveCart(cart)
+                    // save cart values
+                    this.setCartValues(cart)
+                    // display cart item
+                    // show the cart
+                })
+        })
+    }
+    setCartValues(cart) {
+        let tempTotal = 0
+        let itemsTotal = 0
+        cart.map(item => {
+            tempTotal += item.price * item.amount
+            itemsTotal += item.amount
+        })
+        cartTotal.innerText = parseFloat(tempTotal.toFixed(2))
+        cartAmount.innerText = itemsTotal
+        cartCount.innerText = itemsTotal
+    }
+}
+class Storage {
+    static saveProducts(products) {
+        localStorage.setItem('products', JSON.stringify(products))
+    }
+    static getProduct(id) {
+        let products = JSON.parse(localStorage.getItem('products'))
+        return products.find(product => product.id === id)
+    }
+    static saveCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
+}
+const ui = new UI()
+const products = new Products()
+//get all products
+products.getProducts().then(products => {
+    ui.displayProducts(products)
+    Storage.saveProducts(products)
+}).then(() => {
+    ui.getAddButtons()
+})
+}
+/* harmony default export */ __webpack_exports__["default"] = (cartSettings);
+
+/***/ }),
+
 /***/ "./app/js/modules/dynamic.js":
 /*!***********************************!*\
   !*** ./app/js/modules/dynamic.js ***!
@@ -13252,6 +13376,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/burger */ "./app/js/modules/burger.js");
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/slider */ "./app/js/modules/slider.js");
 /* harmony import */ var _modules_fixed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/fixed */ "./app/js/modules/fixed.js");
+/* harmony import */ var _modules_cartSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/cartSettings */ "./app/js/modules/cartSettings.js");
+
 
 
 
@@ -13266,6 +13392,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ;(0,_modules_burger__WEBPACK_IMPORTED_MODULE_3__["default"])()
     ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_4__["default"])()
     ;(0,_modules_fixed__WEBPACK_IMPORTED_MODULE_5__["default"])()
+    ;(0,_modules_cartSettings__WEBPACK_IMPORTED_MODULE_6__["default"])()
 })
 }();
 /******/ })()
