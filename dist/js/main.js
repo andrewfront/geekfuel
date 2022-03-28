@@ -35,21 +35,14 @@ const burger = () => {
 __webpack_require__.r(__webpack_exports__);
 const cartSettings = () => {
 const cartItself = document.querySelector('.header__cart-overlay')
-const cartBtn = document.querySelector('.header__cart-content')
 const cartCloseBtn = document.querySelector('.header__cart-close')
 let cartCount = document.querySelector('.header__cart-count')
 const cartWrapper = document.querySelector('.header__cart-wrapper')
-const cartPrice = document.querySelector('.price')
-let cartNumber = document.querySelector('.header__cart-number')
-const decreaseBtn = document.querySelector('.header__cart-decrease')
-const increaseBtn = document.querySelector('.header__cart-increase')
 let cartAmount = document.querySelector('.cart__amount')
 let cartTotal = document.querySelector('.cart__total')
 const resetCart = document.querySelector('.header__cart-footer__reset')
 const pdoductsContent = document.querySelector('.products__inner')
-const productsImg = document.querySelector('.products__img')
-const productsName = document.querySelector('.products__name')
-const productsPrice = document.querySelector('.product__price')
+const noItemsBlock = document.querySelector('.header__cart-items-info')
 let cart = []
 let buttonsDOM = []
 class Products {
@@ -107,7 +100,9 @@ class UI {
                     // save cart values
                     this.setCartValues(cart)
                     // display cart item
+                    this.addCartItem(cartItem)
                     // show the cart
+                    this.showCart()
                 })
         })
     }
@@ -121,6 +116,132 @@ class UI {
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2))
         cartAmount.innerText = itemsTotal
         cartCount.innerText = itemsTotal
+
+    }
+    addCartItem(item) {
+        const div = document.createElement('div')
+        div.classList.add('header__cart-info')
+        div.innerHTML = `
+        <div class="header__cart-img"><img src=${item.image} alt=${item.title}></div>
+        <div class="header__cart-item__info">
+            <div class="header__cart-price">PRICE <span class="price">${item.price}</span>$</div>
+            <div class="header__cart-number">
+                <svg data-id=${item.id} class="header__cart-decrease">
+                   <use xlink:href="images/svg/sprite.svg#decrease"></use>
+                </svg>
+                <div class="header__cart-number">${item.amount}</div>
+                <svg data-id=${item.id} class="header__cart-increase">
+                   <use xlink:href="images/svg/sprite.svg#increase"></use>
+                </svg>
+            </div>
+        </div>
+        <p class="header__item-title">${item.title}</p>
+        `
+        cartWrapper.appendChild(div)
+    }
+    showCart() {
+        cartItself.classList.add('showcart')
+    }
+    setupAPP() {
+        cart = Storage.getCart()
+        this.setCartValues(cart)
+        this.populateCart(cart)
+        cartCloseBtn.addEventListener('click', this.hideCart)
+    }
+    populateCart(cart) {
+        cart.forEach(item => this.addCartItem(item))
+    }
+    hideCart() {
+        cartItself.classList.remove('showcart')
+    }
+    animateCart() {
+        const menuItem = document.querySelectorAll('.products__item')
+        menuItem.forEach(item => {
+            let getButton = item.querySelector('.products__btn')
+            getButton.addEventListener('click', (e) => {
+                e.preventDefault()
+                let productImage = item.querySelector(".products__img")
+                let productImageFly = productImage.cloneNode(true)
+                let imageFlyWidth = productImage.offsetWidth
+                let imageFlyHeight = productImage.offsetHeight
+                let imageFlyTop = productImage.getBoundingClientRect().top
+                let imageFlyLeft = productImage.getBoundingClientRect().left
+                productImageFly.setAttribute('class', 'flyImage')
+                productImageFly.style.cssText = `
+                width: ${imageFlyWidth}px;
+                height: ${imageFlyHeight}px;
+                left: ${imageFlyLeft}px;
+                top: ${imageFlyTop}px;
+                `
+                document.body.append(productImageFly)
+                const cartFlyLeft = cartCount.getBoundingClientRect().left
+                const cartFlyTop = cartCount.getBoundingClientRect().top
+                productImageFly.style.cssText = `
+                left: ${cartFlyLeft}px;
+                top: ${cartFlyTop}px;
+                width: 0px;
+                height: 0px;
+                opacity: 0;
+                `
+                productImageFly.addEventListener('transitionend', () => {
+                    if (getButton.disabled = true) {
+                        productImageFly.remove()
+                    }
+                })
+            })
+        })
+
+    }
+    cartLogic() {
+        resetCart.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.clearCart()
+            // this.hideCart()
+        })
+        cartWrapper.addEventListener('click', (e) => {
+            if (e.target.classList.contains('header__cart-increase')) {
+                let addAmount = e.target
+                let id = addAmount.dataset.id
+                let tempItem = cart.find(item => item.id === id)
+                tempItem.amount = tempItem.amount + 1
+                Storage.saveCart(cart)
+                this.setCartValues(cart)
+                addAmount.previousElementSibling.innerText = tempItem.amount
+            }
+            if (e.target.classList.contains('header__cart-decrease')) {
+                let lowerAmount = e.target
+                let id = lowerAmount.dataset.id
+                let tempItem = cart.find(item => item.id === id)
+                tempItem.amount = tempItem.amount - 1
+                if (tempItem.amount > 0) {
+                    Storage.saveCart(cart)
+                    this.setCartValues(cart)
+                    lowerAmount.nextElementSibling.innerText = tempItem.amount
+                } else {
+                    cartWrapper.removeChild(lowerAmount.parentElement.parentElement.parentElement)
+                    this.removeItem(id)
+                }
+            }
+        })
+    }
+    clearCart() {
+        let cartItems = cart.map(item => item.id)
+        cartItems.forEach(id => this.removeItem(id))
+        while(cartWrapper.children.length > 0) {
+            cartWrapper.removeChild(cartWrapper.children[0])
+        }
+        this.hideCart()
+    }
+    removeItem(id) {
+        cart = cart.filter(item => item.id !==id)
+        this.setCartValues(cart)
+        Storage.saveCart(cart)
+        let button = this.getSingleButton(id)
+        button.disabled = false
+        button.innerText = 'Add To Cart'
+    }
+    getSingleButton(id) {
+        return buttonsDOM.find(button => button.dataset.id === id)
     }
 }
 class Storage {
@@ -134,15 +255,22 @@ class Storage {
     static saveCart(cart) {
         localStorage.setItem('cart', JSON.stringify(cart))
     }
+    static getCart() {
+        return localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):[]
+    }
 }
 const ui = new UI()
 const products = new Products()
+//setAPP
+ui.setupAPP()
 //get all products
 products.getProducts().then(products => {
     ui.displayProducts(products)
     Storage.saveProducts(products)
+    ui.animateCart(products)
 }).then(() => {
     ui.getAddButtons()
+    ui.cartLogic()
 })
 }
 /* harmony default export */ __webpack_exports__["default"] = (cartSettings);
