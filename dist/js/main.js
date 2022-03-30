@@ -34,6 +34,12 @@ const burger = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 const cartSettings = () => {
+    const client = contentful.createClient({
+        // This is the space ID. A space is like a project folder in Contentful terms
+        space: "kcyqf93mctty",
+        // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+        accessToken: "uHsMWSy5scDtBGo4MoMocBpcj1QBBD0rWrivuq7RiC8"
+      });
 const cartItself = document.querySelector('.header__cart-overlay')
 const cartCloseBtn = document.querySelector('.header__cart-close')
 let cartCount = document.querySelector('.header__cart-count')
@@ -42,15 +48,19 @@ let cartAmount = document.querySelector('.cart__amount')
 let cartTotal = document.querySelector('.cart__total')
 const resetCart = document.querySelector('.header__cart-footer__reset')
 const pdoductsContent = document.querySelector('.products__inner')
-const noItemsBlock = document.querySelector('.header__cart-items-info')
+const noItemsBlock = document.querySelector('.header__cart-noitems')
 let cart = []
 let buttonsDOM = []
 class Products {
 async getProducts() {
     try {
-        let result = await fetch('products.json')
-        let data = await result.json()
-        let products = data.items
+        let contentful = await client.getEntries({
+            content_type: 'geekfuel'
+          })
+        // let result = await fetch('products.json')
+        // let data = await result.json()
+        // let products = data.items
+        let products = contentful.items
         products = products.map(item => {
             const {title, price} = item.fields
             const {id} = item.sys
@@ -147,6 +157,7 @@ class UI {
         this.setCartValues(cart)
         this.populateCart(cart)
         cartCloseBtn.addEventListener('click', this.hideCart)
+
     }
     populateCart(cart) {
         cart.forEach(item => this.addCartItem(item))
